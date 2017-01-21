@@ -13,10 +13,6 @@
   <property name="windowTitle">
    <string>tower</string>
   </property>
-  <property name="windowIcon">
-   <iconset>
-    <normaloff>../../Qt/Project/TowerOfHanoi/TowerOfHanoi/icon.png</normaloff>../../Qt/Project/TowerOfHanoi/TowerOfHanoi/icon.png</iconset>
-  </property>
   <widget class="QWidget" name="centralWidget">
    <widget class="QPushButton" name="pushButton_0">
     <property name="geometry">
