@@ -130,7 +130,9 @@ void tower::on_actionUndo_triggered()
 
 void tower::on_actionUndo_All_triggered()
 {
+    autoplay=false;
     timer->start(33);
+    ui->actionUndo->setDisabled(true);
 }
 
 void tower::CalculateSchedule(int count, int from, int to, int spare)

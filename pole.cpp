@@ -46,7 +46,7 @@ void pole::paintEvent(QPaintEvent *){
     p.setPen(Qt::NoPen);
     p.setBrush(poleColor);
     p.scale(scale,scale);
-    p.drawRoundRect(57,114,6,100-numDisks*8,3,2);
+    p.drawRoundRect(57,120,6,100-numDisks*8,3,2);
 
 }
 

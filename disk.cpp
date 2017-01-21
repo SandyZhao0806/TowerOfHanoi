@@ -24,25 +24,26 @@ disk::disk(int sz1,int position,pole *onthis,QWidget *parent)
  */
 void disk::paintEvent(QPaintEvent *){
     QPainter painter(this);
-        resize(120*scale,240*scale);
-        painter.setRenderHint(QPainter::Antialiasing);
-        painter.scale(scale,scale);
-        painter.setPen(diskEgdeColor);
-        painter.setBrush(diskColor);
-        const int top=204;
-        painter.drawEllipse(QPointF(60,top-(pos-1)*8),(size+2)*6,(size+2)*2);
+    resize(120*scale,240*scale);
+    painter.setRenderHint(QPainter::Antialiasing);
+    painter.scale(scale,scale);
+    painter.setPen(diskEgdeColor);
+    painter.setBrush(diskColor);
+    const int top=210;
 
-        painter.setPen(Qt::NoPen);
-        painter.drawRect(60-((size+2)*6),top-pos*8,(size+2)*12,8);
+   painter.drawEllipse(QPointF(60,top-(pos-1)*8),(size+2)*5,(size+2)*1);
 
-        painter.setPen(diskEgdeColor);
-        painter.drawLine(60-((size+2)*6),top-pos*8,60-((size+2)*6),top-(pos-1)*8);
-        painter.drawLine(60+((size+2)*6),top-pos*8,60+((size+2)*6),top-(pos-1)*8);
-        painter.drawEllipse(QPointF(60,top-pos*8),(size+2)*6,(size+2)*2);
+   painter.setPen(Qt::NoPen);
+   painter.drawRect(60-((size+2)*5),top-pos*8,(size+2)*10,8);
+
+   painter.setPen(diskEgdeColor);
+   painter.drawLine(60-((size+2)*5),top-pos*8,60-((size+2)*5),top-(pos-1)*8);
+   painter.drawLine(60+((size+2)*5),top-pos*8,60+((size+2)*5),top-(pos-1)*8);
+   painter.drawEllipse(QPointF(60,top-pos*8),(size+2)*5,(size+2)*1);
 
 
-        painter.setBrush(diskCenterColor);
-        painter.drawEllipse(QPointF(60,top-pos*8),6,2);
+   painter.setBrush(diskCenterColor);
+   painter.drawEllipse(QPointF(60,top-pos*8),6,2);
 }
 
 /*

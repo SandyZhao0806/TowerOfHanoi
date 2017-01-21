@@ -35,3 +35,6 @@ HEADERS  += tower.h \
     move.h
 
 FORMS    += tower.ui
+
+RESOURCES += \
+    icon.qrc
