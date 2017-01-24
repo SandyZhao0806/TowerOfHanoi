@@ -19,6 +19,7 @@ public:
     ~tower();
     void resizeEvent(QResizeEvent *); // resize the window
     void keyPressEvent(QKeyEvent *event);//override this function to process keyboard event,mouse-free
+    bool eventFilter(QObject *obj, QEvent *event);
 private slots:
     void on_pushButton_0_clicked();
 

@@ -10,7 +10,7 @@
 #include "move.h"
 /*
  * shortcuts
- * key N->New (Please type tab if you want to a new game after type S for setDisks)
+ * key N->New
  * key S->setDisks
  * key U->undo
  * key A->undoAll
@@ -25,7 +25,7 @@ tower::tower(QWidget *parent) :
     ui(new Ui::tower)
 {
     ui->setupUi(this);
-
+    qApp->installEventFilter(this);
     value = ui->spinBox->value();
     poles[0] = new pole(0, value,ui->pushButton_0);
     poles[1] = new pole(1, 0,ui->pushButton_1);
@@ -254,4 +254,17 @@ void tower::updateUndoStatus()
     }
 }
 
+bool tower::eventFilter(QObject *obj, QEvent *event)
+{
+    if(obj == ui->spinBox && event->type() == QEvent::KeyPress)
+    {
+        QKeyEvent *keyEvent = static_cast<QKeyEvent *>(event);
+        if(keyEvent->key() == Qt::Key_Enter || keyEvent->key() == Qt::Key_Return)
+        {
+            ui->spinBox->hide();
+            return true;
+        }
+    }
+    return QObject::eventFilter(obj, event);
+}
 
