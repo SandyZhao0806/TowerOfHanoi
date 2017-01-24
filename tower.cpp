@@ -8,7 +8,14 @@
 #include "disk.h"
 #include "pole.h"
 #include "move.h"
-
+/*
+ * shortcuts
+ * key N->New (Please type tab if you want to a new game after type S for setDisks)
+ * key S->setDisks
+ * key U->undo
+ * key A->undoAll
+ * key P->Auto play
+ */
 
 float scale =2.0;
 disk *moving = NULL;
