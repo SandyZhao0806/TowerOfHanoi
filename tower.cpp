@@ -31,7 +31,7 @@ tower::tower(QWidget *parent) :
     poles[1] = new pole(1, 0,ui->pushButton_1);
     poles[2] = new pole(2, 0,ui->pushButton_2);
     ui->spinBox->hide();
-
+    ui->label->hide();
     timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(delayedAction()));
 
@@ -140,6 +140,7 @@ void tower::on_actionNew_triggered()
 void tower::on_actionSet_Disks_triggered()
 {
     ui->spinBox->show();
+    ui->label->show();
 }
 
 void tower::on_actionExit_triggered()
@@ -262,6 +263,7 @@ bool tower::eventFilter(QObject *obj, QEvent *event)
         if(keyEvent->key() == Qt::Key_Enter || keyEvent->key() == Qt::Key_Return)
         {
             ui->spinBox->hide();
+            ui->label->hide();
             return true;
         }
     }
