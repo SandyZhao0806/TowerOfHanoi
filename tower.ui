@@ -133,20 +133,32 @@
    <property name="text">
     <string>&amp;Exit</string>
    </property>
+   <property name="shortcut">
+    <string>E</string>
+   </property>
   </action>
   <action name="actionUndo">
    <property name="text">
     <string>&amp;Undo</string>
+   </property>
+   <property name="shortcut">
+    <string>U</string>
    </property>
   </action>
   <action name="actionUndo_All">
    <property name="text">
     <string>&amp;Undo All</string>
    </property>
+   <property name="shortcut">
+    <string>A</string>
+   </property>
   </action>
   <action name="actionAuto_Play">
    <property name="text">
     <string>&amp;Auto Play</string>
+   </property>
+   <property name="shortcut">
+    <string>P</string>
    </property>
   </action>
  </widget>

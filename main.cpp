@@ -1,6 +1,11 @@
 #include "tower.h"
 #include <QApplication>
-
+/*
+ * shortcuts
+ * key U->undo
+ * key A->undoAll
+ * key P->Auto play
+ */
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);

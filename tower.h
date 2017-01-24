@@ -18,6 +18,7 @@ public:
     explicit tower(QWidget *parent = 0);
     ~tower();
     void resizeEvent(QResizeEvent *); // resize the window
+    void keyPressEvent(QKeyEvent *event);//override this function to process keyboard event,mouse-free
 private slots:
     void on_pushButton_0_clicked();
 
@@ -40,6 +41,10 @@ private slots:
     void on_spinBox_valueChanged(int arg1);
 
     void delayedAction();
+
+    // Sandy - A new method to update the "undo", "undo all" status(enable/disable)
+    // So that each time we want to update it. we just need to call this function
+     void updateUndoStatus();
 
 private:
     Ui::tower *ui;

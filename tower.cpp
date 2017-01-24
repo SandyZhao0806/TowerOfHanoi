@@ -1,6 +1,7 @@
 #include <QQueue>
 #include <QStack>
 #include <QTimer>
+#include <QKeyEvent>
 
 #include "tower.h"
 #include "ui_tower.h"
@@ -11,7 +12,6 @@
 
 float scale =2.0;
 disk *moving = NULL;
-
 
 tower::tower(QWidget *parent) :
     QMainWindow(parent),
@@ -29,6 +29,9 @@ tower::tower(QWidget *parent) :
     connect(timer, SIGNAL(timeout()), this, SLOT(delayedAction()));
 
     autoplay = false;
+
+    //Sandy - update
+    updateUndoStatus();
 }
 
 tower::~tower()
@@ -52,7 +55,29 @@ void tower::resizeEvent(QResizeEvent *){
     ui->pushButton_1->move(scale * 120, 0);
     ui->pushButton_2->move(scale * 240,0);
 }
-
+/*
+ * This function is for mouse free to control the game
+ * override the keyPressEvent to process keyboard event
+ * key 1 -> pole 0
+ * key 2 -> pole 1
+ * key 3 -> pole 2
+ */
+void tower::keyPressEvent(QKeyEvent *event)
+{
+    switch (event->key()) {
+    case Qt::Key_1:
+        on_pushButton_clicked(poles[0]);
+        break;
+    case Qt::Key_2:
+        on_pushButton_clicked(poles[1]);
+        break;
+    case Qt::Key_3:
+        on_pushButton_clicked(poles[2]);
+        break;
+    default:
+        break;
+    }
+}
 
 void tower::on_pushButton_clicked(pole *p)
 {
@@ -69,6 +94,8 @@ void tower::on_pushButton_clicked(pole *p)
             moving = NULL;
         }
     }
+    //Sandy - update
+    updateUndoStatus();
 }
 
 void tower::on_pushButton_0_clicked()
@@ -93,6 +120,9 @@ void tower::on_actionNew_triggered()
     moving = NULL;
     undoStack.clear();
     schedule.clear();
+
+    //Sandy - update
+    updateUndoStatus();
 
     poles[0] = new pole(0, value,ui->pushButton_0);
     poles[1] = new pole(1, 0,ui->pushButton_1);
@@ -126,13 +156,17 @@ void tower::on_actionUndo_triggered()
         from->put(moving);
         moving = NULL;
     }
+    //Sandy - update
+    updateUndoStatus();
 }
 
 void tower::on_actionUndo_All_triggered()
 {
     autoplay=false;
     timer->start(33);
-    ui->actionUndo->setDisabled(true);
+    //Sandy - update
+    updateUndoStatus();
+    //ui->actionUndo->setDisabled(true);
 }
 
 void tower::CalculateSchedule(int count, int from, int to, int spare)
@@ -152,6 +186,8 @@ void tower::on_actionAuto_Play_triggered()
     ui->pushButton_0->setDisabled(true);
     ui->pushButton_1->setDisabled(true);
     ui->pushButton_2->setDisabled(true);
+    //Sandy - update
+    updateUndoStatus();
 }
 
 void tower::on_spinBox_valueChanged(int arg1)
@@ -184,6 +220,29 @@ void tower::delayedAction()
             timer->stop();
         }else{
             on_actionUndo_triggered();
+        }
+    }
+}
+
+// Sandy - The newly added method
+void tower::updateUndoStatus()
+{
+    if(autoplay)
+    {
+        ui->actionUndo->setDisabled(true);
+        ui->actionUndo_All->setDisabled(false);
+    }
+    else
+    {
+        if(undoStack.empty())
+        {
+            ui->actionUndo->setDisabled(true);
+            ui->actionUndo_All->setDisabled(true);
+        }
+        else
+        {
+            ui->actionUndo->setDisabled(false);
+            ui->actionUndo_All->setDisabled(false);
         }
     }
 }
